@@ -26,7 +26,7 @@ class Alimento
 
 	def initialize(nombre, proteinas, carbohidratos, lipidos, gei, terreno)
 		@nombre, @proteinas, @carbohidratos, @lipidos, @gei, @terreno = nombre, proteinas, carbohidratos, lipidos, gei, terreno
-		@valor_energetico = valor_energetico
+		valor_energetico = valor_energetico
 	end
 
 	def giv_nombre(nombre)
