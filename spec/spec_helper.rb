@@ -1,3 +1,5 @@
+require 'coveralls'
+Coveralls.wear!
 require "pract06"
 
 RSpec.configure do |config|
