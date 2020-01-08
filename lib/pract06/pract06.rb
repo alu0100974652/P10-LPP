@@ -50,7 +50,6 @@ class Alimento
 	end
 
 	def <=>(other)
-		return nil unless other.kind_of? Alimento
 		@valor_energetico <=> other.valor_energetico
 	end
 
