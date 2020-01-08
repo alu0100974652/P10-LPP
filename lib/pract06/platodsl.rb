@@ -25,107 +25,141 @@ class Plato_dsl
 	attr_accessor :nombre,:alimentos,:gramos
 
 	#Funcion para comparar entre Plato
-	def <=> (otro)
-		valor_energetico <=> otro.valor_energetico
+	def <=> (other)
+
+		valor_energetico <=> other.valor_energetico
+
 	end
 
 	def titulo(otro_nombre)
+
 		@nombre = otro_nombre
+
 	end
 
 	def alimento(options ={})
+
 		aux = Alimento.new(options[:descripcion],options[:prote],options[:carbohidratos],options[:lipidos],options[:gases],options[:terreno])
 		@alimentos.insert(aux)
 		@gramos.insert(options[:gramos])
+
 	end
+
 	#Funcion para calcular los gramos de Proteinas del Plato
 	def proteinas
-		nproteinas=0
-		aux =@alimentos.head
-		auxgramos = @gramos.head
-		while(aux!=nil)
-			nproteinas += aux.value.proteinas * (auxgramos.value / (aux.value.proteinas+aux.value.lipidos+aux.value.carbohidratos))
-			aux = aux.next
-			auxgramos = auxgramos.next
+
+		num_proteinas = 0
+		aux_alimentos = @alimentos.head
+		aux_gramos = @gramos.head
+
+		while(aux_alimentos!=nil)
+			num_proteinas += aux_alimentos.value.proteinas * (aux_gramos.value / (aux_alimentos.value.proteinas+aux_alimentos.value.lipidos+aux_alimentos.value.carbohidratos))
+			aux_alimentos = aux_alimentos.next
+			aux_gramos = aux_gramos.next
 		end
-		(nproteinas/gramos_totales*100).round(1)
+
+		(num_proteinas/gramos_totales*100).round(1)
 	end
 
 	#Funcion para calcular los gramos de Lipidos del Plato
 	def lipidos
-		lipidos=0
-		aux = @alimentos.head
-		auxgramos = @gramos.head
+
+		lipidos = 0
+		aux_alimentos = @alimentos.head
+		aux_gramos = @gramos.head
+		
 		while(aux!=nil)
-			lipidos += aux.value.lipidos * (auxgramos.value/(aux.value.proteinas+aux.value.lipidos+aux.value.carbohidratos))
-			aux = aux.next
-			auxgramos = auxgramos.next
+			lipidos += aux_alimentos.value.lipidos * (aux_gramos.value/(aux_alimentos.value.proteinas+aux_alimentos.value.lipidos+aux.value.carbohidratos))
+			aux_alimentos = aux_alimentos.next
+			aux_gramos = aux_gramos.next
 		end
+
 		(lipidos/gramos_totales*100).round(1)
 	end
 
 	#Funcion para calcular los gramos de Hidratos de Carbono del Plato
 	def hidratos
+
 		carbo = 0
-		aux = @alimentos.head
-		auxgramos = @gramos.head
+		aux_alimentos = @alimentos.head
+		aux_gramos = @gramos.head
+
 		while(aux!=nil)
-			carbo += aux.value.carbo * (auxgramos.value/(aux.value.proteinas+aux.value.lipidos+aux.value.carbohidratos))
-			aux = aux.next
-			auxgramos = auxgramos.next
+			carbo += aux_alimentos.value.carbohidratos * (aux_gramos.value/(aux_alimentos.value.proteinas+aux_alimentos.value.lipidos+aux_alimentos.value.carbohidratos))
+			aux_alimentos = aux_alimentos.next
+			aux_gramos = aux_gramos.next
   		end
+
 		  (carbo/gramos_totales*100).round(1)
 	end
 
 	#Funcion para calcular los gramos totales del Plato
 	def gramos_totales
+
 		gramostotales=0
-		aux = @gramos.head
+		aux_gramos = @gramos.head
+		
 		while(aux!=nil)
 			gramostotales+= aux.value
-			aux = aux.next
+			aux_gramos = aux_gramos.next
 		end
+
 		gramostotales.round(1)
+
 	end
 
 	#Funcion Para calcular el Valor energetico del Plato
 	def valor_energetico
+
 		valor=0
-		aux = @alimentos.head
-		auxgramos = @gramos.head
+		aux_alimentos = @alimentos.head
+		aux_gramos = @gramos.head
+		
 		while(aux!=nil)
-			valor += aux.value.valor_energetico * (auxgramos.value/(aux.value.proteinas+aux.value.lipidos+aux.value.carbohidratos))
-			aux = aux.next
-			auxgramos = auxgramos.next
+			valor += aux_alimentos.value.valor_energetico * (aux_gramos.value/(aux_alimentos.value.proteinas+aux_alimentos.value.lipidos+aux_alimentos.value.carbohidratos))
+			aux_alimentos = aux.next
+			aux_gramos = auxgramos.next
+		
 		end
 		valor.round(1)
 	end
 
 	#Formateado de la Clase Plato
 	def to_s
-		output = "Valor Nutricional del plato: #{@nombre}\n"
-		output << "Valor energetico: #{valor_energetico}\n"
-	      	output << "Valor ambiental: #{huella}\n"	
+
+		"Valor Nutricional del plato: #{@nombre}\nValor energetico: #{valor_energetico}\nValor ambiental: #{huella}\n"	
+
 	end
 
 	#Calculo de la Huella Nutricional
 	def huella
 
 		if valor_energetico < 670
-			aux1=1
+
+			indice_impacto_e=1
+		
 		elsif valor_energetico < 830
-			aux1=2
+		
+			indice_impacto_e=2
+		
 		else
-			aux1=3
+			indice_impacto_e=3
 		end
 
 		if hidratos < 800
-			aux2=1
+
+			indice_impacto_h=1
+
 		elsif hidratos < 1200
-			aux2=2
+
+			indice_impacto_h=2
+
 		else
-			aux2=3
+
+			indice_impacto_h=3
+
 		end
-		aux1+aux2/2	
+
+		indice_impacto_e+indice_impacto_h/2	
 	end
 end
