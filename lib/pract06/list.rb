@@ -36,9 +36,7 @@ class List
 
 	def extract_head
             aux=""
-            if (@head == nil)
-                return false
-            else
+	    if (@head!=nil)
                 aux = @head.value
                 @head = @head.next
                 return aux
@@ -50,9 +48,7 @@ class List
   
   	def extract_tail
             aux=""
-            if(@tail == nil)
-                return false
-            else
+            if(@tail!=nil)
                 aux = @tail.value
                 @tail = @tail.prev
                 return aux
