@@ -74,7 +74,7 @@ RSpec.describe Pract06 do
 			#PRACT10
 			
 			@plato_1 = Plato_dsl.new("Hamburguesa") do
-				titulo		"Hamburguesa con Huevo"
+				nombre		"Hamburguesa con Huevo"
 				alimento	:descripcion => "Carne de Vaca",
 						:prote => 21.1,
 						:carbo => 0.0,
@@ -92,7 +92,7 @@ RSpec.describe Pract06 do
 			end
 			
 			@plato_2 = Plato_dsl.new("Salchipapas") do
-				titulo		"Salchipapas"
+				nombre		"Salchipapas"
 				alimento	:descripcion => "Papas Fritas",
 						:prote => 6.3,
 						:carbo => 19.2,
@@ -490,7 +490,7 @@ RSpec.describe Pract06 do
 		it "Prueba de creacion de un plato" do
 
 			@plato = Plato_dsl.new("Hamburguesa") do
-				titulo		"Hamburguesa con Huevo"
+				nombre		"Hamburguesa con Huevo"
 				alimento	:descripcion => "Carne de Vaca",
 						:proteinas => 21.1,
 						:carbohidratos => 0.0,
