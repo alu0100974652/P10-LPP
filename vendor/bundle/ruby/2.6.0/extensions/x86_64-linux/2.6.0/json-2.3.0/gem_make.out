@@ -1,0 +1,13 @@
+current directory: /home/travis/build/alu0100974652/P10-LPP/vendor/bundle/ruby/2.6.0/gems/json-2.3.0/ext/json
+/home/travis/.rvm/rubies/ruby-2.6.3/bin/ruby -I /home/travis/.rvm/rubies/ruby-2.6.3/lib/ruby/2.6.0 -r ./siteconf20200108-6824-nqp4bi.rb extconf.rb
+creating Makefile
+
+current directory: /home/travis/build/alu0100974652/P10-LPP/vendor/bundle/ruby/2.6.0/gems/json-2.3.0/ext/json
+make "DESTDIR=" clean
+
+current directory: /home/travis/build/alu0100974652/P10-LPP/vendor/bundle/ruby/2.6.0/gems/json-2.3.0/ext/json
+make "DESTDIR="
+make: Nothing to be done for 'all'.
+
+current directory: /home/travis/build/alu0100974652/P10-LPP/vendor/bundle/ruby/2.6.0/gems/json-2.3.0/ext/json
+make "DESTDIR=" install
